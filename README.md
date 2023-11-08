@@ -16,3 +16,6 @@ The search should interact with your Laravel application and return results to y
  - If we wanted to add more searchable fields in the future, this should be an easy task.
  - When the scheduled task runs, what happens if the user already exists?
  - If we wanted to change the API to use a different service, how difficult should that be?
+
+
+Any questions, please email richard@headred.net
