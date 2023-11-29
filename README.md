@@ -4,7 +4,7 @@ This is our Laravel coding test to assess your skills and thought process when i
 
 ## The Test
 
-We would like you to create a Laravel application, using the latest version and Laravel Sail. We would like you to pull in user data from https://reqres.in/ via a command that can be ran on a schedule. Create a front end SPA using a framework of your choice, Vue, React, Svelte, etc that would display all data with a simple search box.
+We would like you to create a Laravel application, using the latest version and Laravel Sail. We would like you to pull in user data from https://reqres.in/ via a command that can be ran on a schedule. Create a front end SPA using a framework of your choice, Vue, React, Svelte, etc that would display all data with a simple search box. You can use Inertia for your front end if you'd like.
 Searchable fields should be Email and First name, but searchable separately.
 
 The search should interact with your Laravel application and return results to your front end.
