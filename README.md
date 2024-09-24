@@ -16,16 +16,28 @@ If facing any issue in WSL or mount related issue
 
 use : 
 composer install 
-php artisan serve 
+
+npm install
 npm run build 
 npm run dev
 php artisan test (clean the DB for testing)
+php artisan serve 
 
 Clear cache in case : 
 php artisan cache:clear
 
 
-Update the env Database details 
+To run the schedular 
+./vendor/bin/sail artisan schedular:run
+
+or 
+
+php artisan schedular:run
+
+
+
+
+- Update the env Database details in .env file according to your Database 
 
 
 open browser in 
@@ -35,7 +47,7 @@ to see the Application running
 Note:  Application Image are stored in APP_IMAGES folder in root for quick view including Unit test result  
 
 
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
 # Laravel User Fetch Application   - Thought Process And Approach Followed 
 

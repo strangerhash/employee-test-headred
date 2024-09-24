@@ -34,7 +34,6 @@ class UserController extends Controller
     public function renderFrontEnd()
     {
         $users = User::all(); // Fetch users from the database
-        // dd($users);
         return Inertia::render('Users', ['users' => $users]);
     }
 
