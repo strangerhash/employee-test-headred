@@ -12,11 +12,10 @@ To test the Application
 
 ./vendor/bin/sail artisan test
 
-If facing any issue in WSL or mount related issue 
+## Note : If facing any issue in WSL or mount related issue 
 
 use : 
 composer install 
-
 npm install
 npm run build 
 npm run dev
@@ -26,8 +25,7 @@ php artisan serve
 Clear cache in case : 
 php artisan cache:clear
 
-
-To run the schedular 
+### To run the schedular 
 ./vendor/bin/sail artisan schedular:run
 
 or 
@@ -35,7 +33,9 @@ or
 php artisan schedular:run
 
 
+To check the schedular list 
 
+php artisan schedular:list
 
 - Update the env Database details in .env file according to your Database 
 
