@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 
-abstract class Controller
-{
+abstract class Controller {
     //
 }
