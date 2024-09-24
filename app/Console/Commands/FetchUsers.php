@@ -7,50 +7,47 @@ use Illuminate\Support\Facades\Http;
 use App\Models\User;
 
 class FetchUsers extends Command
- {
+{
     protected $signature = 'users:fetch';
 
     protected $description = 'Fetch users from ReqRes API and store in the database';
-// function for handeling the logic
+    // function for handeling the logic
     public function handle()
- {
+    {
         $currentPage = 1;
         // Start from the first page
 
         do {
-            $response = Http::get( "https://reqres.in/api/users?page={$currentPage}" );
+            $response = Http::get("https://reqres.in/api/users?page={$currentPage}");
 
-            if ( $response->successful() ) {
-                $users = $response->json()[ 'data' ];
+            if ($response->successful()) {
+                $users = $response->json()['data'];
 
                 // Store or update each user in the database
-                foreach ( $users as $userData ) {
+                foreach ($users as $userData) {
                     User::updateOrCreate(
-                        [ 'email' => $userData[ 'email' ] ], // Unique field
+                        ['email' => $userData['email']], // Unique field
                         [
-                            'first_name' => $userData[ 'first_name' ],
-                            'last_name' => $userData[ 'last_name' ],
+                            'first_name' => $userData['first_name'],
+                            'last_name' => $userData['last_name'],
                         ]
                     );
                 }
 
                 // Get the total number of pages from the API response
-                $totalPages = $response->json()[ 'total_pages' ];
+                $totalPages = $response->json()['total_pages'];
 
-                $this->info( "Page {$currentPage} users fetched and stored successfully." );
+                $this->info("Page {$currentPage} users fetched and stored successfully.");
                 $currentPage++;
                 // Move to the next page
             } else {
-                $this->error( 'Failed to fetch users from the API: ' . $response->body() );
+                $this->error('Failed to fetch users from the API: ' . $response->body());
                 break;
                 // Exit the loop if the API call fails
             }
-
-        }
-        while ( $currentPage <= $totalPages );
+        } while ($currentPage <= $totalPages);
         // Continue until all pages have been fetched
 
-        $this->info( 'All users fetched and stored successfully.' );
+        $this->info('All users fetched and stored successfully.');
     }
 }
-
