@@ -4,23 +4,23 @@ namespace App\Console;
 
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+namespace App\Console;
+
+
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
-        // Your console commands can be registered here
-        'users:fetch'
+        \App\Console\Commands\FetchUsers::class, // Ensure this is included
     ];
 
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
+        // Schedule your command here
         $schedule->command('users:fetch')->hourly();
     }
 
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
-
-        // Include commands from app/Console/Commands
-        require base_path('routes/console.php');
     }
 }

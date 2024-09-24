@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -25,4 +26,13 @@ class UserController extends Controller
 
         return response()->json($users);
     }
+
+
+    public function renderFrontEnd()
+    {
+        $users = User::all(); // Fetch users from the database
+        // dd($users);
+        return Inertia::render('Users', ['users' => $users]);
+    }
+
 }

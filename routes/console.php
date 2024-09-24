@@ -13,5 +13,5 @@ Artisan::command('inspire', function () {
 
 //For Testing Added 2 minutes Time
 Artisan::command('users:fetch', function () {
-   FetchUsers::handle();
+    $this->call('App\Console\Commands\FetchUsers');
 })->purpose('Fetch and Store User Data')->everyTwoMinutes();
