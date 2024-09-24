@@ -42,7 +42,7 @@ Follow these steps to install and run the application on your local machine:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone [URL]
    cd your-repository
 
 
@@ -99,3 +99,10 @@ This endpoint fetches users from the database, allowing for search functionality
 
 GET /api/users
 This endpoint fetches all users from the database.
+
+
+
+To test the application , I have created 2 Unit Test which verifies , 
+If User can be fetched 
+If User can be created in DB 
+
