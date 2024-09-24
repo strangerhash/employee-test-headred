@@ -3,37 +3,34 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
+use App\Models\User;
 
 class FetchUsers extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:fetch-users';
+    protected $signature = 'users:fetch';
+    protected $description = 'Fetch users from ReqRes API and store in the database';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         $response = Http::get('https://reqres.in/api/users');
-        $users = $response->json()['data'];
-    
-        foreach ($users as $user) {
-            User::updateOrCreate(
-                ['email' => $user['email']],
-                ['first_name' => $user['first_name']]
-            );
+
+        if ($response->successful()) {
+            $users = $response->json()['data'];
+
+            foreach ($users as $userData) {
+                User::updateOrCreate(
+                    ['email' => $userData['email']], // Unique field
+                    [
+                        'first_name' => $userData['first_name'],
+                        'last_name' => $userData['last_name'],
+                    ]
+                );
+            }
+
+            $this->info('Users fetched and stored successfully.');
+        } else {
+            $this->error('Failed to fetch users from the API.');
         }
     }
-    
 }

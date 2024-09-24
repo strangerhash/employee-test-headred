@@ -8,11 +8,12 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         // Your console commands can be registered here
+        'users:fetch'
     ];
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('fetch:users')->hourly();
+        $schedule->command('users:fetch')->hourly();
     }
 
     protected function commands()
