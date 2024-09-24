@@ -170,3 +170,9 @@ If we wanted to add more searchable fields in the future, this should be an easy
 When the scheduled task runs, what happens if the user already exists? - It will check , if already exists it will just create or update based on existing value 
 If we wanted to change the API to use a different service, how difficult should that be? - it will not be a difficult task , as for now I have configured in such a way that moving to another service will not be a difficult thing.
 
+
+
+# 1 docker-compose up laravel.test
+# 2 docker-compose run laravel.test-runner
+# 3 docker-compose run laravel.migrate
+
