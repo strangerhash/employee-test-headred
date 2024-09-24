@@ -24,7 +24,7 @@ class UserTest extends TestCase
         $response = $this->get('/api/users');
 
         $response->assertStatus(200)
-                 ->assertJsonStructure(['*' => ['id', 'email', 'first_name', 'last_name']]);
+            ->assertJsonStructure(['*' => ['id', 'email', 'first_name', 'last_name']]);
     }
 
     public function test_user_can_be_searched_by_email()
@@ -38,7 +38,7 @@ class UserTest extends TestCase
         $response = $this->get('/api/users?query=test@example.com');
 
         $response->assertStatus(200)
-                 ->assertJsonStructure(['*' => ['id', 'email', 'first_name', 'last_name']]);
+            ->assertJsonStructure(['*' => ['id', 'email', 'first_name', 'last_name']]);
     }
 
     public function test_user_can_be_searched_by_first_name()
@@ -52,7 +52,7 @@ class UserTest extends TestCase
         $response = $this->get('/api/users?query=Test');
 
         $response->assertStatus(200)
-                 ->assertJsonStructure(['*' => ['id', 'email', 'first_name', 'last_name']]);
+            ->assertJsonStructure(['*' => ['id', 'email', 'first_name', 'last_name']]);
     }
 
     public function test_searching_non_existent_user_returns_empty_response()
@@ -60,7 +60,7 @@ class UserTest extends TestCase
         $response = $this->get('/api/users?query=nonexistent@example.com');
 
         $response->assertStatus(200)
-                 ->assertJson([]);
+            ->assertJson([]);
     }
 
 
@@ -74,8 +74,8 @@ class UserTest extends TestCase
 
         // Run the command
         $this->artisan('users:fetch')
-             ->expectsOutput('Page 1 users fetched and stored successfully.')
-             ->assertExitCode(0);
+            ->expectsOutput('Page 1 users fetched and stored successfully.')
+            ->assertExitCode(0);
 
         // Check that no users were created in the database
         $this->assertDatabaseCount('users', 0);

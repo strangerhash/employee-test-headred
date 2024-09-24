@@ -11,7 +11,7 @@ class FetchUsers extends Command
     protected $signature = 'users:fetch';
 
     protected $description = 'Fetch users from ReqRes API and store in the database';
-
+// function for handeling the logic
     public function handle()
  {
         $currentPage = 1;
