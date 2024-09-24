@@ -23,7 +23,6 @@ services:
             - sail
         depends_on:
             - mysql
-        # Custom commands to run the app and tests
         entrypoint: /bin/sh -c 'php artisan serve & php artisan test'
 
     mysql:
@@ -51,7 +50,20 @@ services:
             retries: 3
             timeout: 5s
 
-    # Adding a separate test runner service
+    # Custom service to run PHP_CodeSniffer
+    phpcs:
+        build:
+            context: './vendor/laravel/sail/runtimes/8.3'
+            dockerfile: Dockerfile
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        entrypoint: /bin/sh -c './vendor/bin/phpcs --standard=PSR12 app/'
+
     laravel.test-runner:
         build:
             context: './vendor/laravel/sail/runtimes/8.3'
@@ -65,7 +77,6 @@ services:
             - sail
         entrypoint: /bin/sh -c "php artisan test"
 
-    # Adding a separate migration service
     laravel.migrate:
         build:
             context: './vendor/laravel/sail/runtimes/8.3'
